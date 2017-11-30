@@ -2,9 +2,11 @@ from commands.help import HelpCommand
 from commands.ping import PingCommand
 from commands.hello import HelloCommand
 from commands.toons import ToonsCommand
+from commands.ships import ShipsCommand
 from commands.members import MembersCommand
 from commands.guild_member import GuildMemberCommand
 from commands.member_toon import MemberToonCommand
+from commands.member_ship import MemberShipCommand
 from commands.zetas import ZetasCommand
 
 
@@ -19,9 +21,11 @@ class CommandInterpreter(object):
         self.commands['ping'] = PingCommand('ping')
         self.commands['hello'] = HelloCommand('hello')
         self.commands['toons'] = ToonsCommand('toons')
+        self.commands['ships'] = ShipsCommand('ships')
         self.commands['members'] = MembersCommand('members')
         self.commands['guild-member'] = GuildMemberCommand('guild-member')
         self.commands['member-toon'] = MemberToonCommand('member-toon')
+        self.commands['member-ship'] = MemberShipCommand('member-ship')
         self.commands['zetas'] = ZetasCommand('zetas')
 
     def interpret(self, name):

@@ -10,6 +10,7 @@ class Inventory(object):
     members_url = "https://swgoh.gg/g/11097/swgoh-guild-raiders/"
     guild_toons_url = "https://swgoh.gg/api/guilds/11097/units/"
     zetas_url = "https://swgoh.gg/g/11097/swgoh-guild-raiders/zetas/"
+    ships_url = "https://swgoh.gg/api/ships/?format=json"
 
     def __init__(self, html_cache_dir):
         self.html_cache_dir = html_cache_dir
@@ -40,6 +41,8 @@ class Inventory(object):
         self.ships_obj_list = []
 
         self.base_id_to_ship_name_dict = {}
+
+        self.populate_ships()
         # ----------------------------------
 
         # ----------------------------------
@@ -75,6 +78,16 @@ class Inventory(object):
             self.base_id_to_toon_name_dict[i['base_id']] = n
             self.toon_to_members_dict[n] = []
 
+    def populate_ships(self):
+        s = web_pages_cache.get_from_cache(self.html_cache_dir, "ships.json", self.ships_url)
+        self.ships_obj_list = json.loads(s)
+        for i in self.ships_obj_list:
+            n = i['name']
+            self.ships_name_list.append(n)
+            self.ships_str = self.ships_str + n + "\n"
+            self.base_id_to_ship_name_dict[i['base_id']] = n
+            self.ship_to_members_dict[n] = []
+
     def populate_members(self):
         s = web_pages_cache.get_from_cache(self.html_cache_dir, "guild_members.html", self.members_url)
         soup = BeautifulSoup(s, 'html.parser')
@@ -90,6 +103,7 @@ class Inventory(object):
             table_data.append([user_id, name])
             self.members_name_list.append(name)
             self.member_to_toons_dict[name] = []
+            self.member_to_ships_dict[name] = []
 
         self.members_table = AsciiTable(table_data)
 
@@ -98,21 +112,34 @@ class Inventory(object):
         dict = eval(s)
         for key, values in dict.items():
             name = self.base_id_to_toon_name_dict.get(key, None)
-            if name is None:
-                print("Skipping " + key)
-                continue
+            if name is not None:
+                for value in values:
+                    self.toon_to_members_dict[name].append({"gear_level": value['gear_level'], \
+                                                            "power": value['power'], \
+                                                            "level": value['level'], \
+                                                            "rarity": value['rarity'], \
+                                                            "player": value['player']})
+                    self.member_to_toons_dict[value['player']].append({"gear_level": value['gear_level'], \
+                                                                       "power": value['power'], \
+                                                                       "level": value['level'], \
+                                                                       "rarity": value['rarity'], \
+                                                                       "toon": name})
+            # ship
+            else:
+                ship = self.base_id_to_ship_name_dict.get(key, None)
+                if ship is None:
+                    print("Skipping")
+                    continue
 
-            for value in values:
-                self.toon_to_members_dict[name].append({"gear_level": value['gear_level'], \
-                                                        "power": value['power'], \
-                                                        "level": value['level'], \
-                                                        "rarity": value['rarity'], \
-                                                        "player": value['player']})
-                self.member_to_toons_dict[value['player']].append({"gear_level": value['gear_level'], \
-                                                                   "power": value['power'], \
-                                                                   "level": value['level'], \
-                                                                   "rarity": value['rarity'], \
-                                                                   "toon": name})
+                for value in values:
+                    self.ship_to_members_dict[ship].append({"power": value['power'], \
+                                                            "level": value['level'], \
+                                                            "rarity": value['rarity'], \
+                                                            "player": value['player']})
+                    self.member_to_ships_dict[value['player']].append({"power": value['power'], \
+                                                                       "level": value['level'], \
+                                                                       "rarity": value['rarity'], \
+                                                                       "ship": ship})
 
     def toons_for_member(self, name):
         table_data = []
@@ -136,6 +163,19 @@ class Inventory(object):
         i = 1
         for elem in list:
             table_data.append([i, elem['player'], elem['rarity'], elem['gear_level'], elem['power']])
+            i = i + 1
+
+        return table_data
+
+    def players_with_ship(self, name):
+        table_data = []
+
+        list = self.ship_to_members_dict[name]
+        list = sorted(list, key=itemgetter('power'), reverse=True)
+
+        i = 1
+        for elem in list:
+            table_data.append([i, elem['player'], elem['rarity'], elem['power']])
             i = i + 1
 
         return table_data
