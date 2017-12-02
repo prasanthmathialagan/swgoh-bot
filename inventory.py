@@ -12,7 +12,8 @@ class Inventory(object):
     zetas_url = "https://swgoh.gg/g/11097/swgoh-guild-raiders/zetas/"
     ships_url = "https://swgoh.gg/api/ships/?format=json"
 
-    def __init__(self, html_cache_dir):
+    def __init__(self, html_cache_dir, refresh=False):
+        self.refresh = refresh
         self.html_cache_dir = html_cache_dir
 
         # ----------------------------------
@@ -68,8 +69,10 @@ class Inventory(object):
         self.zetas()
         # ----------------------------------
 
+        self.refresh = False
+
     def populate_toons(self):
-        s = web_pages_cache.get_from_cache(self.html_cache_dir, "toons.json", self.toons_url)
+        s = web_pages_cache.get_from_cache(self.html_cache_dir, "toons.json", self.toons_url, self.refresh)
         self.toons_obj_list = json.loads(s)
         for i in self.toons_obj_list:
             n = i['name']
@@ -79,7 +82,7 @@ class Inventory(object):
             self.toon_to_members_dict[n] = []
 
     def populate_ships(self):
-        s = web_pages_cache.get_from_cache(self.html_cache_dir, "ships.json", self.ships_url)
+        s = web_pages_cache.get_from_cache(self.html_cache_dir, "ships.json", self.ships_url, self.refresh)
         self.ships_obj_list = json.loads(s)
         for i in self.ships_obj_list:
             n = i['name']
@@ -89,7 +92,7 @@ class Inventory(object):
             self.ship_to_members_dict[n] = []
 
     def populate_members(self):
-        s = web_pages_cache.get_from_cache(self.html_cache_dir, "guild_members.html", self.members_url)
+        s = web_pages_cache.get_from_cache(self.html_cache_dir, "guild_members.html", self.members_url, self.refresh)
         soup = BeautifulSoup(s, 'html.parser')
 
         base = "body > div.container.p-t-md > div.content-container > div.content-container-primary.character-list " \
@@ -108,7 +111,7 @@ class Inventory(object):
         self.members_table = AsciiTable(table_data)
 
     def populate_guild_data(self):
-        s = web_pages_cache.get_from_cache(self.html_cache_dir, "guild_toons.dict", self.guild_toons_url)
+        s = web_pages_cache.get_from_cache(self.html_cache_dir, "guild_toons.dict", self.guild_toons_url, self.refresh)
         dict = eval(s)
         for key, values in dict.items():
             name = self.base_id_to_toon_name_dict.get(key, None)
@@ -181,7 +184,7 @@ class Inventory(object):
         return table_data
 
     def zetas(self):
-        s = web_pages_cache.get_from_cache(self.html_cache_dir, "zetas.html", self.zetas_url)
+        s = web_pages_cache.get_from_cache(self.html_cache_dir, "zetas.html", self.zetas_url, self.refresh)
         soup = BeautifulSoup(s, 'html.parser')
 
         base = "body > div.container.p-t-md > div.content-container > div.content-container-primary.character-list " \
