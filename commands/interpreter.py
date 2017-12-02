@@ -1,6 +1,4 @@
 from commands.help import HelpCommand
-from commands.ping import PingCommand
-from commands.hello import HelloCommand
 from commands.toons import ToonsCommand
 from commands.ships import ShipsCommand
 from commands.members import MembersCommand
@@ -18,8 +16,6 @@ class CommandInterpreter(object):
 
     def populate_commands(self):
         self.commands['help'] = HelpCommand('help')
-        self.commands['ping'] = PingCommand('ping')
-        self.commands['hello'] = HelloCommand('hello')
         self.commands['toons'] = ToonsCommand('toons')
         self.commands['ships'] = ShipsCommand('ships')
         self.commands['members'] = MembersCommand('members')

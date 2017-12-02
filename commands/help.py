@@ -7,8 +7,6 @@ class HelpCommand(Command):
 	def execute(self, client, input, inventory, channel):
 		output = "Command \n" \
                 " **help** - Displays all the commands\n" \
-                " **ping** - Responds with a Pong\n" \
-                " **hello** - Greets you\n" \
                 " **toons** - Lists all the toons\n" \
                 " **ships** - Lists all the ships\n" \
                 " **members** - Lists all the Guild members\n" \
