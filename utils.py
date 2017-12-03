@@ -1,5 +1,6 @@
 import asyncio
 from terminaltables import AsciiTable
+import discord
 
 def strip_spaces_and_join(args):
     output = ""
@@ -34,3 +35,9 @@ def send_as_table(data, headers, batch_size, channel, client):
         chunk.insert(0, headers)
         ascii = AsciiTable(chunk)
         yield from client.send_message(channel, '```' + ascii.table + '```')
+
+
+@asyncio.coroutine
+def embed_and_send(client, channel, tit, desc, col=0xDEADBF):
+    em = discord.Embed(title=tit, description=desc, color=col)
+    yield from client.send_message(channel, embed=em)

@@ -6,6 +6,11 @@ from inventory import Inventory
 import utils
 import time
 import os.path
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+import datetime
+
+scheduler = AsyncIOScheduler()
+scheduler.start()
 
 html_cache_dir = "/media/pi/KINGSTON/html_cache"
 timestamp_file = "last_updated_timestamp.bot"
@@ -36,13 +41,77 @@ def update_last_updated_time():
 if last_updated_time is None:
     update_last_updated_time()
 
+notifications_channel = None
+
 @client.event
 @asyncio.coroutine
 def on_ready():
+    global notifications_channel
+
     syslog.syslog('Logged in as')
     syslog.syslog(client.user.name)
     syslog.syslog(client.user.id)
     syslog.syslog('------')
+    for server in client.servers:
+        print(str(server.id) + ", " + str(server.name))
+        for channel in server.channels:
+            print("----->" + str(channel.id) + ", " + str(channel.name))
+            if server.name == 'Guild notifications' and channel.name == 'general':
+                notifications_channel = channel
+
+    # Notify guild activity reset every day at midnight and after reset
+    scheduler.add_job(notify_guild_activity_midnight, trigger='cron', minute='0', hour="0")
+    scheduler.add_job(notify_guild_activity_after_reset, trigger='cron', minute='0', hour="15")
+
+    yield from utils.embed_and_send(client, notifications_channel, 'Welcome', 'Greeter is online!')
+
+@asyncio.coroutine
+def notify_guild_activity_after_reset():
+    now = datetime.datetime.now()
+    day = now.strftime("%A")
+
+    activity=""
+    if day == "Sunday":
+        activity = "Spend Cantina energy\nSave Normal Energy"
+    elif day == "Monday":
+        activity = "Spend Normal energy on Light Side Battles"
+    elif day == "Tuesday":
+        activity = "Complete Galactic War Battles (24 with restart)\nSave Normal Energy"
+    elif day == "Wednesday":
+        activity = "Spend Normal energy on Hard Mode Battles"
+    elif day == "Thursday":
+        activity = "Complete Daily Challenges (10)\nSave Normal Energy"
+    elif day == "Friday":
+        activity = "Spend Normal energy on Dark Side Battles"
+    elif day == 'Saturday':
+        activity = "Complete Arena Battles (5)"
+
+    syslog.syslog("Sending guild activity reminder after reset for %s, activity = %s!!!!" % (day, activity))
+    yield from utils.embed_and_send(client, notifications_channel, 'Guild Activity Reminder after reset (' + day + ')', activity)
+
+@asyncio.coroutine
+def notify_guild_activity_midnight():
+    now = datetime.datetime.now()
+    day = now.strftime("%A")
+
+    activity=""
+    if day == "Sunday":
+        activity = "Complete Arena Battles (5)\nSave Cantina energy"
+    elif day == "Monday":
+        activity = "Spend Cantina Energy\nSave Normal energy\nSave Galactic War (after restart)"
+    elif day == "Tuesday":
+        activity = "Spend Normal energy on Light Side Battles\nSave Galactic War (with restart available)"
+    elif day == "Wednesday":
+        activity = "Complete Galactic War Battles (12)\nSave Normal Energy"
+    elif day == "Thursday":
+        activity = "Spend Normal energy on Hard Mode Battles\nSave Daily Challenges"
+    elif day == "Friday":
+        activity = "Complete Daily Challenges (10)\nSave Normal energy"
+    elif day == 'Saturday':
+        activity = "Spend Normal energy on Dark Side Battles\nSave Arena Battles"
+
+    syslog.syslog("Sending guild activity reminder before reset for %s, activity = %s!!!!" % (day, activity))
+    yield from utils.embed_and_send(client, notifications_channel, 'Guild Activity Reminder before reset (' + day + ')', activity)
 
 @client.event
 @asyncio.coroutine
