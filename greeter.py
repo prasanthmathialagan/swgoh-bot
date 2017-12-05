@@ -42,11 +42,12 @@ if last_updated_time is None:
     update_last_updated_time()
 
 notifications_channel = None
+main_channel = None
 
 @client.event
 @asyncio.coroutine
 def on_ready():
-    global notifications_channel
+    global notifications_channel, main_channel
 
     syslog.syslog('Logged in as')
     syslog.syslog(client.user.name)
@@ -58,10 +59,12 @@ def on_ready():
             print("----->" + str(channel.id) + ", " + str(channel.name))
             if server.name == 'Guild notifications' and channel.name == 'general':
                 notifications_channel = channel
+            elif server.name == 'SWGOH Guild Raiders' and channel.name == 'general':
+                main_channel = channel
 
     # Notify guild activity reset every day at midnight and after reset
     scheduler.add_job(notify_guild_activity_midnight, trigger='cron', minute='0', hour="0")
-    scheduler.add_job(notify_guild_activity_after_reset, trigger='cron', minute='0', hour="15")
+    scheduler.add_job(notify_guild_activity_after_reset, trigger='cron', minute='30', hour="17")
 
     yield from utils.embed_and_send(client, notifications_channel, 'Welcome', 'Greeter is online!')
 
@@ -87,7 +90,7 @@ def notify_guild_activity_after_reset():
         activity = "Complete Arena Battles (5)"
 
     syslog.syslog("Sending guild activity reminder after reset for %s, activity = %s!!!!" % (day, activity))
-    yield from utils.embed_and_send(client, notifications_channel, 'Guild Activity Reminder after reset (' + day + ')', activity)
+    yield from utils.embed_and_send(client, main_channel, 'Guild Activity Reminder after reset (' + day + ')', activity)
 
 @asyncio.coroutine
 def notify_guild_activity_midnight():
@@ -111,7 +114,7 @@ def notify_guild_activity_midnight():
         activity = "Spend Normal energy on Dark Side Battles\nSave Arena Battles"
 
     syslog.syslog("Sending guild activity reminder before reset for %s, activity = %s!!!!" % (day, activity))
-    yield from utils.embed_and_send(client, notifications_channel, 'Guild Activity Reminder before reset (' + day + ')', activity)
+    yield from utils.embed_and_send(client, main_channel, 'Guild Activity Reminder before reset (' + day + ')', activity)
 
 @client.event
 @asyncio.coroutine
