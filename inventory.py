@@ -114,17 +114,33 @@ class Inventory(object):
         soup = BeautifulSoup(s, 'html.parser')
 
         base = "body > div.container.p-t-md > div.content-container > div.content-container-primary.character-list " \
-               "> ul > li.media.list-group-item.p-0.b-t-0 > div > table > tbody > tr > td > a"
+               "> ul > li.media.list-group-item.p-0.b-t-0 > div > table > tbody > tr > td"
 
         members = soup.select(base)
-        table_data = [['UserID', 'Name']]
+        table_data = [['No', 'UserID', 'Name', 'GP']]
+        i = 1
+        j = 1
+        mem_local = []
         for m in members:
-            user_id = m['href'].split("/")[2]
-            name = m.find("strong").text
-            table_data.append([user_id, name])
-            self.members_name_list.append(name)
-            self.member_to_toons_dict[name] = []
-            self.member_to_ships_dict[name] = []
+            if i % 5 == 1:
+                a = m.find('a')
+                user_id = a['href'].split("/")[2]
+                name = a.find("strong").text
+                self.member_to_toons_dict[name] = []
+                self.member_to_ships_dict[name] = []
+                self.members_name_list.append(name)
+                
+                mem_local.append(j)
+                mem_local.append(user_id)
+                mem_local.append(name)
+
+                j = j + 1
+            if i % 5 == 2:
+                mem_local.append(m.text)
+                table_data.append(mem_local)
+                mem_local = []
+
+            i = i + 1
 
         self.members_table = AsciiTable(table_data)
 
