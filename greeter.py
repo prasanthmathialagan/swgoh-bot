@@ -147,6 +147,9 @@ def on_message(message):
         finally:
             update_last_updated_time()
 
-    yield from command_handler.execute(client, utils.strip_spaces_and_join(words[1:]), inventory, message.channel)
+    try:
+        yield from command_handler.execute(client, utils.strip_spaces_and_join(words[1:]), inventory, message.channel)
+    except:
+        yield from client.send_message(message.channel, "Unknown error. Please report to celessalaike_swgoh");
 
-client.run('MzYwNTA3NTM5OTc4MzIxOTIw.DKWkWA.yx-yMLKqkEegLnthB3wYkNmvXS8')
+client.run('NDE0NjA2OTg4MjYyMjQ0MzUz.DX3TZQ.sy1PSukn5zAKeRlwDwIo6iANTYs')

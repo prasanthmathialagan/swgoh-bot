@@ -20,6 +20,16 @@ def find_closest_match(name, list):
 
     return None
 
+def find_case_insensitive_exact_match(name, list):
+    for l in list:
+        if name.lower() == l.lower():
+            return l
+
+    return None
+
+def find_alias_matches(name, aliases):
+    return aliases.get(name.lower(), [])
+
 @asyncio.coroutine
 def send_as_table(data, headers, batch_size, channel, client):
     chunk = []

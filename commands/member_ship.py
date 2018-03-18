@@ -10,7 +10,18 @@ class MemberShipCommand(Command):
 			yield from client.send_message(channel, "Must supply a ship name. Usage: @greeter member-ship Scimitar")
 			return
 
-		closest_match = utils.find_closest_match(input, inventory.ships_name_list)
+		closest_match = None
+
+		alias_matches = utils.find_alias_matches(input, inventory.ships_aliases)
+		if len(alias_matches) == 1:
+			closest_match = alias_matches[0]
+		elif len(alias_matches) > 1:
+			yield from client.send_message(channel,
+										   'Multiple results returned' + str(alias_matches) + '. Be specific.')
+			return
+		else:
+			closest_match = utils.find_closest_match(input, inventory.ships_name_list)
+
 		if closest_match is None:
 			yield from client.send_message(channel, 'No results found for ' + input + '. Check the supplied name. Use @greeter ships to get correct name')
 			return

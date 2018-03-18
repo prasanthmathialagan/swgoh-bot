@@ -11,6 +11,9 @@ class Inventory(object):
     guild_toons_url = "https://swgoh.gg/api/guilds/11097/units/"
     zetas_url = "https://swgoh.gg/g/11097/swgoh-guild-raiders/zetas/"
     ships_url = "https://swgoh.gg/api/ships/?format=json"
+    data_dir = "data"
+    toons_aliases_url = "https://raw.githubusercontent.com/jmiln/SWGoHBot/master/data/characters.json"
+    ships_aliases_url = "https://raw.githubusercontent.com/jmiln/SWGoHBot/master/data/ships.json"
 
     def __init__(self, html_cache_dir, refresh=False):
         self.refresh = refresh
@@ -22,13 +25,15 @@ class Inventory(object):
         self.member_to_toons_dict = {}
         self.toon_to_members_dict = {}
 
-        self.toons_str = ""
         self.toons_name_list = []
         self.toons_obj_list = []
+        self.toons_aliases = {}
 
         self.base_id_to_toon_name_dict = {}
 
         self.populate_toons()
+        self.populate_aliases("characters.json", self.toons_aliases_url, self.toons_aliases)
+
         # ----------------------------------
 
         # ----------------------------------
@@ -40,10 +45,12 @@ class Inventory(object):
         self.ships_str = ""
         self.ships_name_list = []
         self.ships_obj_list = []
+        self.ships_aliases = {}
 
         self.base_id_to_ship_name_dict = {}
 
         self.populate_ships()
+        self.populate_aliases("ships.json", self.ships_aliases_url, self.ships_aliases)
         # ----------------------------------
 
         # ----------------------------------
@@ -77,9 +84,20 @@ class Inventory(object):
         for i in self.toons_obj_list:
             n = i['name']
             self.toons_name_list.append(n)
-            self.toons_str = self.toons_str + n + "\n"
             self.base_id_to_toon_name_dict[i['base_id']] = n
             self.toon_to_members_dict[n] = []
+
+    def populate_aliases(self, aliases_data_file, aliases_url, output_dict):
+        s = web_pages_cache.get_from_cache(self.data_dir, aliases_data_file, aliases_url, False)
+        obj_list = json.loads(s)
+        for obj in obj_list:
+            name = obj['name']
+            aliases = obj['aliases']
+            for alias in aliases:
+                alias = alias.lower()
+                names = output_dict.get(alias, [])
+                names.append(name)
+                output_dict[alias] = names
 
     def populate_ships(self):
         s = web_pages_cache.get_from_cache(self.html_cache_dir, "ships.json", self.ships_url, self.refresh)
