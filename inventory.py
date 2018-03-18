@@ -3,7 +3,7 @@ import json
 from bs4 import BeautifulSoup
 from terminaltables import AsciiTable
 from operator import itemgetter
-
+import csv
 
 class Inventory(object):
     toons_url = "https://swgoh.gg/api/characters/?format=json"
@@ -117,10 +117,10 @@ class Inventory(object):
                "> ul > li.media.list-group-item.p-0.b-t-0 > div > table > tbody > tr > td"
 
         members = soup.select(base)
-        table_data = [['No', 'UserID', 'Name', 'GP']]
         i = 1
         j = 1
         mem_local = []
+        table_data = []
         for m in members:
             if i % 5 == 1:
                 a = m.find('a')
@@ -142,7 +142,18 @@ class Inventory(object):
 
             i = i + 1
 
-        self.members_table = AsciiTable(table_data)
+        # Manual entries
+        with open('data/members.csv', 'r') as f:
+            reader = csv.reader(f)
+            for row in reader:
+                name = row[1]
+                self.member_to_toons_dict[name] = []
+                self.member_to_ships_dict[name] = []
+                self.members_name_list.append(name)
+                table_data.append([j, row[0], row[1], ""])
+                j = j + 1
+
+        self.members_table = table_data
 
     def populate_guild_data(self):
         s = web_pages_cache.get_from_cache(self.html_cache_dir, "guild_toons.dict", self.guild_toons_url, self.refresh)
