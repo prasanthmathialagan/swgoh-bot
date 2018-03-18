@@ -152,4 +152,4 @@ def on_message(message):
     except:
         yield from client.send_message(message.channel, "Unknown error. Please report to celessalaike_swgoh");
 
-client.run('NDE0NjA2OTg4MjYyMjQ0MzUz.DX3TZQ.sy1PSukn5zAKeRlwDwIo6iANTYs')
+client.run('<TOKEN>')
