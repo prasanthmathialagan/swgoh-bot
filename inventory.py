@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from terminaltables import AsciiTable
 from operator import itemgetter
 import csv
+import os
 
 class Inventory(object):
     toons_url = "https://swgoh.gg/api/characters/?format=json"
@@ -188,6 +189,31 @@ class Inventory(object):
                                                                        "level": value['level'], \
                                                                        "rarity": value['rarity'], \
                                                                        "ship": ship})
+
+        # Manually added data
+        with open('data/members.csv', 'r') as f:
+            reader = csv.reader(f)
+            for row in reader:
+                user = row[0]
+                if os.path.isfile('data/' + user + '.csv'):
+                    print('Fetching data for the user ' + user)
+                    with open('data/' + user + '.csv', 'r') as user_file:
+                        user_reader = csv.reader(user_file)
+                        for user_reader_row in user_reader:
+                            name = self.base_id_to_toon_name_dict[user_reader_row[0]];
+                            self.toon_to_members_dict[name].append({"gear_level": "-", \
+                                                                    "power": 0, \
+                                                                    "level": "-", \
+                                                                    "rarity": user_reader_row[1], \
+                                                                    "player": row[1]})
+                            self.member_to_toons_dict[row[1]].append({"gear_level": "-", \
+                                                                               "power": 0, \
+                                                                               "level": "-", \
+                                                                               "rarity": user_reader_row[1], \
+                                                                               "toon": name})
+                else:
+                    print('Data not available for the user ' + user)
+
 
     def toons_for_member(self, name):
         table_data = []
