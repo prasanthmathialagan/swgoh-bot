@@ -8,6 +8,7 @@ from commands.member_ship import MemberShipCommand
 from commands.zetas import ZetasCommand
 from commands.cls_ready import CLSReadyCommand
 from commands.jtr_ready import JTRReadyCommand
+from commands.thrawn_ready import ThrawnReadyCommand
 
 
 class CommandInterpreter(object):
@@ -26,7 +27,8 @@ class CommandInterpreter(object):
         self.commands['member-ship'] = MemberShipCommand('member-ship')
         self.commands['zetas'] = ZetasCommand('zetas')
         self.commands['cls-ready'] = CLSReadyCommand('cls-ready')
-        self.commands['jtr-ready'] = JTRReadyCommand('jtr-ready')
+        self.commands['jtr-ready'] = JTRReadyCommand('jtr-ready')        
+        self.commands['thrawn-ready'] = ThrawnReadyCommand('thrawn-ready')
 
     def interpret(self, name):
         try:
