@@ -6,6 +6,8 @@ from commands.guild_member import GuildMemberCommand
 from commands.member_toon import MemberToonCommand
 from commands.member_ship import MemberShipCommand
 from commands.zetas import ZetasCommand
+from commands.cls_ready import CLSReadyCommand
+from commands.jtr_ready import JTRReadyCommand
 
 
 class CommandInterpreter(object):
@@ -23,6 +25,8 @@ class CommandInterpreter(object):
         self.commands['member-toon'] = MemberToonCommand('member-toon')
         self.commands['member-ship'] = MemberShipCommand('member-ship')
         self.commands['zetas'] = ZetasCommand('zetas')
+        self.commands['cls-ready'] = CLSReadyCommand('cls-ready')
+        self.commands['jtr-ready'] = JTRReadyCommand('jtr-ready')
 
     def interpret(self, name):
         try:

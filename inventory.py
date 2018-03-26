@@ -5,6 +5,7 @@ from terminaltables import AsciiTable
 from operator import itemgetter
 import csv
 import os
+import utils
 
 class Inventory(object):
     toons_url = "https://swgoh.gg/api/characters/?format=json"
@@ -251,6 +252,19 @@ class Inventory(object):
         for elem in list:
             table_data.append([i, elem['player'], elem['rarity'], elem['power']])
             i = i + 1
+
+        return table_data
+
+    def get_specific_toons_data_for_member(self, member, toons_names):
+        toons_list = self.member_to_toons_dict[member]
+
+        table_data = []
+        for elem in toons_list:
+            name = elem['toon']
+            if utils.find_case_insensitive_exact_match(name, toons_names) is None:
+                continue
+            rarity = elem['rarity']
+            table_data.append([name, rarity])
 
         return table_data
 
