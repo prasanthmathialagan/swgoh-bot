@@ -1,0 +1,71 @@
+[
+  {
+    "phase": "P1",
+    "missions": {
+      "special": [
+        {
+          "name": "Ezra Bridger",
+          "required": true
+        },
+        {
+          "name": "Hera Syndulla",
+          "required": true
+        },
+        {
+          "name": "Kanan Jarrus",
+          "required": true
+        },
+        {
+          "name": "Chopper",
+          "required": true
+        },
+        {
+          "name": "Garazeb \"Zeb\" Orrelios",
+          "required": true
+        },
+        {
+          "name": "Sabine Wren",
+          "required": false
+        }
+      ]
+    }
+  },
+  {
+    "phase": "P2-1",
+    "missions": {
+      "combat": [
+        {
+          "name": "Hoth Rebel Soldier",
+          "required": true
+        }
+      ]
+    }
+  },
+  {
+    "phase": "P2-2",
+    "missions": {
+      "special": [
+        {
+          "name": "Jyn Erso",
+          "required": true
+        },
+        {
+          "name": "Baze Malbus",
+          "required": true
+        },
+        {
+          "name": "K-2SO",
+          "required": true
+        },
+        {
+          "name": "Cassian Andor",
+          "required": true
+        },
+        {
+          "name": "Chirrut Imwe",
+          "required": true
+        }
+      ]
+    }
+  }
+]
