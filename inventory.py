@@ -16,6 +16,7 @@ class Inventory(object):
     data_dir = "data"
     toons_aliases_url = "https://raw.githubusercontent.com/jmiln/SWGoHBot/master/data/characters.json"
     ships_aliases_url = "https://raw.githubusercontent.com/jmiln/SWGoHBot/master/data/ships.json"
+    lstbplatoons_file = data_dir + "/lstbplatoons.json"
 
     def __init__(self, html_cache_dir, refresh=False):
         self.refresh = refresh
@@ -68,6 +69,13 @@ class Inventory(object):
         # Guild data
         # ----------------------------------
         self.populate_guild_data()
+        # ----------------------------------
+
+        # ----------------------------------
+        # Platoons
+        # ----------------------------------
+        self.lstbplatoons_dict = {}
+        self.populate_platoons(self.lstbplatoons_file, self.lstbplatoons_dict)
         # ----------------------------------
 
         # ----------------------------------
@@ -267,6 +275,16 @@ class Inventory(object):
             table_data.append([name, rarity])
 
         return table_data
+
+    def populate_platoons(self, platoons_file, platoons_dict):
+        obj_list = json.load(open(platoons_file))
+        for i in obj_list:
+            phase = i['phase']
+            level = i['level']
+            items = i.get('toons', None)
+            if items is None:
+                items = i['ships']
+            platoons_dict[phase] = {'rarity':level, 'items':items}
 
     def zetas(self):
         s = web_pages_cache.get_from_cache(self.html_cache_dir, "zetas.html", self.zetas_url, self.refresh)

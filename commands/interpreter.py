@@ -9,6 +9,7 @@ from commands.zetas import ZetasCommand
 from commands.cls_ready import CLSReadyCommand
 from commands.jtr_ready import JTRReadyCommand
 from commands.thrawn_ready import ThrawnReadyCommand
+from commands.lstbplatoons import LSTBPlatoonsCommand
 
 
 class CommandInterpreter(object):
@@ -29,6 +30,7 @@ class CommandInterpreter(object):
         self.commands['cls-ready'] = CLSReadyCommand('cls-ready')
         self.commands['jtr-ready'] = JTRReadyCommand('jtr-ready')        
         self.commands['thrawn-ready'] = ThrawnReadyCommand('thrawn-ready')
+        self.commands['lstbplatoons'] = LSTBPlatoonsCommand('lstbplatoons')
 
     def interpret(self, name):
         try:
