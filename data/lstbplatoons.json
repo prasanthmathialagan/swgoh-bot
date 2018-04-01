@@ -1,33 +1,182 @@
 [
   {
     "phase": "P1",
+    "level": 2,
+    "toons": []
+  },
+  {
+    "phase": "P2-1",
+    "level": 3,
+    "toons": []
+  },
+  {
+    "phase": "P2-2",
+    "level": 3,
+    "toons": []
+  },
+  {
+    "phase": "P3-1",
+    "level": 4,
+    "ships": []
+  },
+  {
+    "phase": "P3-2",
+    "level": 4,
+    "toons": []
+  },
+  {
+    "phase": "P3-3",
+    "level": 4,
+    "toons": []
+  },
+  {
+    "phase": "P4-1",
+    "level": 5,
+    "ships": [
+      {
+        "name": "First Order SF TIE Fighter",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "phase": "P4-2",
+    "level": 5,
     "toons": [
       {
-        "name": "Jedi Knight Anakin",
+        "name": "Visas Marr",
+        "count": 1
+      },
+      {
+        "name": "Lobot",
+        "count": 1
+      },
+      {
+        "name": "Amilyn Holdo",
+        "count": 1
+      },
+      {
+        "name": "Rey (Jedi Training)",
+        "count": 1
+      },
+      {
+        "name": "Rose Tico",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "phase": "P4-3",
+    "level": 5,
+    "toons": [
+      {
+        "name": "Visas Marr",
+        "count": 1
+      },
+      {
+        "name": "Lobot",
+        "count": 1
+      },
+      {
+        "name": "Logray",
+        "count": 1
+      },
+      {
+        "name": "Amilyn Holdo",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "phase": "P5-1",
+    "level": 6,
+    "ships": [
+      {
+        "name": "Poe Dameron's X-wing",
         "count": 3
       },
       {
-        "name": "Mace Windu",
-        "count": 3
-      },
-      {
-        "name": "Jedi Knight Guardian",
+        "name": "Sun Fac's Geonosian Starfighter",
         "count": 2
       },
       {
-        "name": "Aayla Secura",
+        "name": "First Order SF TIE Fighter",
+        "count": 6
+      },
+      {
+        "name": "Kylo Ren's Command Shuttle",
+        "count": 3
+      },
+      {
+        "name": "Rex's ARC-170",
+        "count": 1
+      },
+      {
+        "name": "Millennium Falcon (Ep VII)",
+        "count": 1
+      },
+      {
+        "name": "TIE Reaper",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "phase": "P5-2",
+    "level": 6,
+    "toons": [
+      {
+        "name": "Amilyn Holdo",
+        "count": 2
+      },
+      {
+        "name": "Wicket",
+        "count": 2
+      },
+      {
+        "name": "Rose Tico",
+        "count": 2
+      },
+      {
+        "name": "Lobot",
         "count": 4
       },
       {
-        "name": "Barriss Offee",
+        "name": "Visas Marr",
+        "count": 3
+      },
+      {
+        "name": "Pao",
         "count": 2
       },
       {
-        "name": "Princess Leia",
-        "count": 2
+        "name": "Scarif Rebel Pathfinder",
+        "count": 1
       },
       {
-        "name": "Luke Skywalker (Farmboy)",
+        "name": "R2-D2",
+        "count": 1
+      },
+      {
+        "name": "Baze Malbus",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "phase": "P5-3",
+    "level": 6,
+    "toons": [
+      {
+        "name": "Amilyn Holdo",
+        "count": 1
+      },
+      {
+        "name": "Visas Marr",
+        "count": 3
+      },
+      {
+        "name": "Rose Tico",
         "count": 1
       },
       {
@@ -35,135 +184,7 @@
         "count": 3
       },
       {
-        "name": "Admiral Ackbar",
-        "count": 2
-      },
-      {
-        "name": "Lando Calrissian",
-        "count": 1
-      },
-      {
-        "name": "Finn",
-        "count": 1
-      },
-      {
-        "name": "Poe Dameron",
-        "count": 1
-      },
-      {
-        "name": "Rey (Scavenger)",
-        "count": 1
-      },
-      {
-        "name": "Resistance Trooper",
-        "count": 1
-      },
-      {
-        "name": "Resistance Pilot",
-        "count": 1
-      },
-      {
-        "name": "Ima-Gun Di",
-        "count": 2
-      },
-      {
-        "name": "Jedi Consular",
-        "count": 4
-      },
-      {
-        "name": "Obi-Wan Kenobi (Old Ben)",
-        "count": 2
-      },
-      {
-        "name": "Qui-Gon Jinn",
-        "count": 2
-      },
-      {
-        "name": "Plo Koon",
-        "count": 2
-      },
-      {
-        "name": "Pao",
-        "count": 3
-      },
-      {
-        "name": "Stormtrooper Han",
-        "count": 1
-      },
-      {
-        "name": "Chief Nebit",
-        "count": 1
-      },
-      {
-        "name": "Datcha",
-        "count": 1
-      },
-      {
-        "name": "Jawa",
-        "count": 1
-      },
-      {
-        "name": "Jawa Engineer",
-        "count": 1
-      },
-      {
-        "name": "Jawa Scavenger",
-        "count": 1
-      },
-      {
-        "name": "Kit Fisto",
-        "count": 2
-      },
-      {
-        "name": "Luminara Unduli",
-        "count": 1
-      },
-      {
-        "name": "Ahsoka Tano",
-        "count": 3
-      },
-      {
-        "name": "Wedge Antilles",
-        "count": 1
-      },
-      {
-        "name": "Biggs Darklighter",
-        "count": 1
-      },
-      {
-        "name": "Ahsoka Tano (Fulcrum)",
-        "count": 1
-      },
-      {
-        "name": "Bistan",
-        "count": 3
-      },
-      {
-        "name": "Chief Chirpa",
-        "count": 1
-      },
-      {
-        "name": "Ewok Elder",
-        "count": 2
-      },
-      {
-        "name": "Teebo",
-        "count": 2
-      },
-      {
-        "name": "Ewok Scout",
-        "count": 2
-      },
-      {
-        "name": "Paploo",
-        "count": 2
-      },
-      {
-        "name": "Jyn Erso",
-        "count": 2
-      },
-      {
-        "name": "Cassian Andor",
+        "name": "General Kenobi",
         "count": 2
       },
       {
@@ -171,449 +192,7 @@
         "count": 1
       },
       {
-        "name": "Chirrut Imwe",
-        "count": 1
-      },
-      {
-        "name": "K-2SO",
-        "count": 2
-      },
-      {
-        "name": "Clone Wars Chewbacca",
-        "count": 1
-      },
-      {
-        "name": "Coruscant Underworld Police",
-        "count": 1
-      },
-      {
-        "name": "Clone Sergeant – Phase I",
-        "count": 2
-      },
-      {
-        "name": "Bodhi Rook",
-        "count": 2
-      },
-      {
-        "name": "Logray",
-        "count": 1
-      },
-      {
-        "name": "Scarif Rebel Pathfinder",
-        "count": 1
-      },
-      {
-        "name": "CC-2224 \"Cody\"",
-        "count": 1
-      },
-      {
-        "name": "CT-21-0408 \"Echo\"",
-        "count": 1
-      },
-      {
-        "name": "CT-5555 \"Fives\"",
-        "count": 1
-      },
-      {
-        "name": "CT-7567 \"Rex\"",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "phase": "P2-1",
-    "toons": [
-      {
-        "name": "Wedge Antilles",
-        "count": 3
-      },
-      {
-        "name": "Biggs Darklighter",
-        "count": 3
-      },
-      {
-        "name": "Lobot",
-        "count": 3
-      },
-      {
-        "name": "Ahsoka Tano (Fulcrum)",
-        "count": 3
-      },
-      {
-        "name": "Obi-Wan Kenobi (Old Ben)",
-        "count": 3
-      },
-      {
-        "name": "Ima-Gun Di",
-        "count": 2
-      },
-      {
-        "name": "Jedi Consular",
-        "count": 2
-      },
-      {
-        "name": "Qui-Gon Jinn",
-        "count": 2
-      },
-      {
-        "name": "Plo Koon",
-        "count": 2
-      },
-      {
-        "name": "Teebo",
-        "count": 2
-      },
-      {
-        "name": "Ewok Scout",
-        "count": 2
-      },
-      {
-        "name": "Paploo",
-        "count": 2
-      },
-      {
-        "name": "Logray",
-        "count": 1
-      },
-      {
-        "name": "Ewok Elder",
-        "count": 2
-      },
-      {
-        "name": "Lando Calrissian",
-        "count": 1
-      },
-      {
-        "name": "Mace Windu",
-        "count": 2
-      },
-      {
-        "name": "Jedi Knight Anakin",
-        "count": 3
-      },
-      {
-        "name": "Jedi Knight Guardian",
-        "count": 2
-      },
-      {
         "name": "Aayla Secura",
-        "count": 4
-      },
-      {
-        "name": "Barriss Offee",
-        "count": 2
-      },
-      {
-        "name": "Clone Wars Chewbacca",
-        "count": 1
-      },
-      {
-        "name": "Coruscant Underworld Police",
-        "count": 1
-      },
-      {
-        "name": "Clone Sergeant – Phase I",
-        "count": 2
-      },
-      {
-        "name": "Ahsoka Tano",
-        "count": 3
-      },
-      {
-        "name": "Hera Syndulla",
-        "count": 3
-      },
-      {
-        "name": "Kanan Jarrus",
-        "count": 5
-      },
-      {
-        "name": "Garazeb \"Zeb\" Orrelios",
-        "count": 2
-      },
-      {
-        "name": "Ezra Bridger",
-        "count": 5
-      },
-      {
-        "name": "Chopper",
-        "count": 2
-      },
-      {
-        "name": "Kit Fisto",
-        "count": 2
-      },
-      {
-        "name": "Chief Chirpa",
-        "count": 1
-      },
-      {
-        "name": "Sabine Wren",
-        "count": 2
-      },
-      {
-        "name": "Chief Nebit",
-        "count": 1
-      },
-      {
-        "name": "Dathcha",
-        "count": 1
-      },
-      {
-        "name": "Jawa",
-        "count": 1
-      },
-      {
-        "name": "Jawa Engineer",
-        "count": 1
-      },
-      {
-        "name": "Jawa Scavenger",
-        "count": 1
-      },
-      {
-        "name": "Luke Skywalker (Farmboy)",
-        "count": 1
-      },
-      {
-        "name": "CC-2224 \"Cody\"",
-        "count": 1
-      },
-      {
-        "name": "CT-21-0408 \"Echo\"",
-        "count": 1
-      },
-      {
-        "name": "CT-5555 \"Fives\"",
-        "count": 1
-      },
-      {
-        "name": "CT-7567 \"Rex\"",
-        "count": 1
-      },
-      {
-        "name": "Finn",
-        "count": 1
-      },
-      {
-        "name": "Poe Dameron",
-        "count": 1
-      },
-      {
-        "name": "Rey (Scavenger)",
-        "count": 1
-      },
-      {
-        "name": "Resistance Trooper",
-        "count": 1
-      },
-      {
-        "name": "Resistance Pilot",
-        "count": 1
-      }
-    ]
-  },
-  {
-    "phase": "P2-2",
-    "toons": [
-      {
-        "name": "Hera Syndulla",
-        "count": 2
-      },
-      {
-        "name": "Kanan Jarrus",
-        "count": 4
-      },
-      {
-        "name": "Garazeb \"Zeb\" Orrelios",
-        "count": 1
-      },
-      {
-        "name": "Ezra Bridger",
-        "count": 4
-      },
-      {
-        "name": "Chopper",
-        "count": 1
-      },
-      {
-        "name": "Sabine Wren",
-        "count": 2
-      },
-      {
-        "name": "Ima-Gun Di",
-        "count": 2
-      },
-      {
-        "name": "Jedi Consular",
-        "count": 2
-      },
-      {
-        "name": "Obi-Wan Kenobi (Old Ben)",
-        "count": 2
-      },
-      {
-        "name": "Plo Koon",
-        "count": 2
-      },
-      {
-        "name": "Qui-Gon Jinn",
-        "count": 2
-      },
-      {
-        "name": "Finn",
-        "count": 1
-      },
-      {
-        "name": "Poe Dameron",
-        "count": 1
-      },
-      {
-        "name": "Rey (Scavenger)",
-        "count": 1
-      },
-      {
-        "name": "Resistance Trooper",
-        "count": 1
-      },
-      {
-        "name": "Resistance Pilot",
-        "count": 1
-      },
-      {
-        "name": "Mace Windu",
-        "count": 2
-      },
-      {
-        "name": "Jedi Knight Anakin",
-        "count": 3
-      },
-      {
-        "name": "Jedi Knight Guardian",
-        "count": 2
-      },
-      {
-        "name": "Aayla Secura",
-        "count": 4
-      },
-      {
-        "name": "Barriss Offee",
-        "count": 2
-      },
-      {
-        "name": "Chief Nebit",
-        "count": 1
-      },
-      {
-        "name": "Dathcha",
-        "count": 1
-      },
-      {
-        "name": "Jawa",
-        "count": 1
-      },
-      {
-        "name": "Jawa Engineer",
-        "count": 1
-      },
-      {
-        "name": "Jawa Scavenger",
-        "count": 1
-      },
-      {
-        "name": "Princess Leia",
-        "count": 2
-      },
-      {
-        "name": "Lobot",
-        "count": 4
-      },
-      {
-        "name": "Luke Skywalker (Farmboy)",
-        "count": 2
-      },
-      {
-        "name": "Stormtrooper Han",
-        "count": 2
-      },
-      {
-        "name": "Admiral Ackbar",
-        "count": 2
-      },
-      {
-        "name": "Teebo",
-        "count": 2
-      },
-      {
-        "name": "Ewok Scout",
-        "count": 2
-      },
-      {
-        "name": "Paploo",
-        "count": 2
-      },
-      {
-        "name": "Logray",
-        "count": 1
-      },
-      {
-        "name": "Ewok Elder",
-        "count": 2
-      },
-      {
-        "name": "Wedge Antilles",
-        "count": 2
-      },
-      {
-        "name": "Biggs Darklighter",
-        "count": 2
-      },
-      {
-        "name": "Ahsoka Tano (Fulcrum)",
-        "count": 2
-      },
-      {
-        "name": "Lando Calrissian",
-        "count": 2
-      },
-      {
-        "name": "Kit Fisto",
-        "count": 2
-      },
-      {
-        "name": "Ahsoka Tano",
-        "count": 3
-      },
-      {
-        "name": "CC-2224 \"Cody\"",
-        "count": 1
-      },
-      {
-        "name": "CT-21-0408 \"Echo\"",
-        "count": 1
-      },
-      {
-        "name": "CT-5555 \"Fives\"",
-        "count": 1
-      },
-      {
-        "name": "CT-7567 \"Rex\"",
-        "count": 1
-      },
-      {
-        "name": "Clone Sergeant – Phase I",
-        "count": 2
-      },
-      {
-        "name": "Chief Chirpa",
-        "count": 1
-      },
-      {
-        "name": "Clone Wars Chewbacca",
-        "count": 1
-      },
-      {
-        "name": "Coruscant Underworld Police",
         "count": 1
       }
     ]

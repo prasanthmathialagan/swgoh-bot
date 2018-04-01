@@ -167,7 +167,7 @@ class Inventory(object):
                     self.toon_to_members_dict[name].append({"gear_level": value['gear_level'], \
                                                             "power": value['power'], \
                                                             "level": value['level'], \
-                                                            "rarity": value['rarity'], \
+                                                            "rarity": int(value['rarity']), \
                                                             "player": value['player']})
                     self.member_to_toons_dict[value['player']].append({"gear_level": value['gear_level'], \
                                                                        "power": value['power'], \
@@ -205,7 +205,7 @@ class Inventory(object):
                             self.toon_to_members_dict[name].append({"gear_level": "-", \
                                                                     "power": 0, \
                                                                     "level": "-", \
-                                                                    "rarity": user_reader_row[1], \
+                                                                    "rarity": int(user_reader_row[1]), \
                                                                     "player": row[1]})
                             self.member_to_toons_dict[row[1]].append({"gear_level": "-", \
                                                                                "power": 0, \
@@ -220,7 +220,7 @@ class Inventory(object):
         table_data = []
 
         list = self.member_to_toons_dict[name]
-        list = sorted(list, key=itemgetter('power'), reverse=True)
+        list = sorted(list, key=itemgetter(1, 3), reverse=True)
 
         i = 1
         for elem in list:
@@ -233,7 +233,7 @@ class Inventory(object):
         table_data = []
 
         list = self.toon_to_members_dict[name]
-        list = sorted(list, key=itemgetter('power'), reverse=True)
+        list = sorted(list, key=itemgetter('rarity', 'power'), reverse=True)
 
         i = 1
         for elem in list:
